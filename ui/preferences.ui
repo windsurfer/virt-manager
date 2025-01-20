@@ -559,7 +559,7 @@ identical CPUs in order to migrate the VM.</property>
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="margin-start">12</property>
-                    <property name="row-spacing">3</property>
+                    <property name="row-spacing">8</property>
                     <property name="column-spacing">6</property>
                     <child>
                       <object class="GtkLabel" id="label17">
@@ -718,6 +718,34 @@ identical CPUs in order to migrate the VM.</property>
                       <packing>
                         <property name="left-attach">1</property>
                         <property name="top-attach">4</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="tooltip-text" translatable="yes">If disabled, the VM window will not grab all keyboard inputs.</property>
+                        <property name="halign">start</property>
+                        <property name="label" translatable="yes">Grab Keyboard:</property>
+                        <property name="use-underline">True</property>
+                        <property name="mnemonic-widget">prefs-vm-grabkeyboard</property>
+                      </object>
+                      <packing>
+                        <property name="left-attach">0</property>
+                        <property name="top-attach">5</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkCheckButton" id="prefs-vm-grabkeyboard">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">False</property>
+                        <property name="draw-indicator">True</property>
+                        <signal name="toggled" handler="on_prefs_vm_grabkeyboard_toggled" swapped="no"/>
+                      </object>
+                      <packing>
+                        <property name="left-attach">1</property>
+                        <property name="top-attach">5</property>
                       </packing>
                     </child>
                   </object>

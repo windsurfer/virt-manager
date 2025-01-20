@@ -326,6 +326,13 @@ class vmmConfig(object):
     def on_keys_combination_changed(self, cb):
         return self.conf.notify_add("/console/grab-keys", cb)
 
+    def get_vm_grabkeyboard(self):
+        return bool(self.conf.get("/console/grabkeyboard"))
+    def set_vm_grabkeyboard(self, val):
+        return self.conf.set("/console/grabkeyboard", val)
+    def on_vm_grabkeyboard_changed(self, cb):
+        return self.conf.notify_add("/console/grabkeyboard", cb)
+
     # Confirmation preferences
     def get_confirm_forcepoweroff(self):
         return self.conf.get("/confirm/forcepoweroff")

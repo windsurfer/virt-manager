@@ -31,6 +31,7 @@
       <summary>Autoconnect to the default VM console when the VM window is opened</summary>
       <description>Autoconnect to the default VM console when the VM window is opened. Users may want to turn this off if they prefer to use another viewer app for their VMs, and don't want virt-manager to interfere, but they still want to use virt-manager's details. -1 = global default, 0 = off, 1 = on</description>
     </key>
+
   </schema>
 
 
@@ -233,6 +234,12 @@
       <default>true</default>
       <summary>Autoconnect to the default VM console when the VM window is opened</summary>
       <description>Autoconnect to the default VM console when the VM window is opened. Users may want to turn this off if they prefer to use another viewer app for their VMs, and don't want virt-manager to interfere, but they still want to use virt-manager's details.</description>
+    </key>
+
+    <key name="grabkeyboard" type="b">
+      <default>true</default>
+      <summary>Grab the keyboard input and prevent the host from receiving the input</summary>
+      <description>Grab the keyboard input. Users may want to disable this if there are some window-management hotkeys on their host system that they wish to use without having to press the Grab Keys every time.</description>
     </key>
   </schema>
 

@@ -81,6 +81,10 @@ class Viewer(vmmGObject):
         self.add_gsettings_handle(
             self.config.on_keys_combination_changed(self._refresh_grab_keys))
 
+
+        self.add_gsettings_handle(
+            self.config.on_vm_grabkeyboard_changed(self._refresh_grab_keyboard))
+
     def _cleanup(self):
         self._close()
 
@@ -109,6 +113,7 @@ class Viewer(vmmGObject):
     def _set_display(self, display):
         self._display = display
         self._refresh_grab_keys()
+        self._refresh_grab_keyboard()
 
         self._display.connect("size-allocate",
             self._make_signal_proxy("size-allocate"))
@@ -182,6 +187,18 @@ class Viewer(vmmGObject):
             self._set_grab_keys(keys)
         except Exception as e:  # pragma: no cover
             log.debug("Error when getting the grab keys combination: %s",
+                          str(e))
+
+    def _refresh_grab_keyboard(self):
+        if not self._display or not self._display.props:
+            return  # pragma: no cover
+
+        try:
+            should_grab = self.config.get_vm_grabkeyboard()
+            self._display.props.grab_keyboard = should_grab
+
+        except Exception as e:  # pragma: no cover
+            log.debug("Error when setting vm grabkeyboard: %s",
                           str(e))
 
     def _emit_disconnected(self, errdetails=None):
@@ -635,6 +652,7 @@ class SpiceViewer(Viewer):
 
             display = SpiceClientGtk.Display.new(
                     self._spice_session, channel_id)
+
             self._set_display(display)
 
             _SIGS.connect_after(
